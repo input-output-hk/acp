@@ -3,9 +3,16 @@
 ## Usage
 
 ```
-nix-shell --pure --run ./test.sh
+xdg-open $(nix-build -A acp-site)/share/doc/acp/index.html
+```
 
-xdg-open output/manuscript.html
+## Hacking
+
+```
+nix-shell -A acp-site --pure
+$ cd $(mktemp -d)
+$ dontInstall=true genericBuild
+$ ls output
 ```
 
 ## Credit
