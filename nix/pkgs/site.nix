@@ -24,12 +24,14 @@ stdenv.mkDerivation rec {
 
     echo >&2 "PANDOC_DATA_DIR: $PANDOC_DATA_DIR"
     echo >&2 "Exporting HTML manuscript"
-    pandoc --verbose \
-      --data-dir="$PANDOC_DATA_DIR" \
-      --defaults=config/pandoc/common.yaml \
-      --defaults=config/pandoc/html.yaml \
-      --output=output/index.html \
-      proposals/01.md
+    find proposals/ -maxdepth 1 -type f -exec sh \
+      -c 'pandoc --verbose \
+           --data-dir="$PANDOC_DATA_DIR" \
+           --defaults=config/pandoc/common.yaml \
+           --defaults=config/pandoc/html.yaml \
+           --output=output/$(basename $1 .md).html \
+           $1' \
+      sh {} \;
   '';
 
   installPhase = ''
