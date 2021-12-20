@@ -23,6 +23,9 @@ stdenv.mkDerivation rec {
     mkdir -p output/proposals
 
     echo >&2 "PANDOC_DATA_DIR: $PANDOC_DATA_DIR"
+    echo >&2 "Exporting assets"
+    cp -r assets output/assets
+
     echo >&2 "Exporting HTML manuscript"
     find proposals/ -maxdepth 1 -type f -exec sh \
       -c 'pandoc --verbose \

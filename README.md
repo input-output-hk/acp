@@ -10,8 +10,8 @@ xdg-open $(nix-build -A acp-site)/share/doc/acp/index.html
 
 ```
 nix-shell -A acp-site --pure
-$ pushd $(mktemp -d)
-$ dontInstall=true genericBuild
+$ src=./ dontUnpack=true dontInstall=true genericBuild
+$ python -m http.server --directory output/
 $ ls output
 ```
 
