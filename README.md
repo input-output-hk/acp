@@ -10,7 +10,7 @@ xdg-open $(nix-build -A acp-site)/share/doc/acp/index.html
 
 ```
 nix-shell -A acp-site --pure
-$ cd $(mktemp -d)
+$ pushd $(mktemp -d)
 $ dontInstall=true genericBuild
 $ ls output
 ```
