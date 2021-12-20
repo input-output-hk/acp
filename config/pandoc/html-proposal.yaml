@@ -1,0 +1,4 @@
+# Pandoc --defaults for HTML proposal output.
+# Load on top of common defaults and html defaults.
+include-after-body:
+- config/plugins/hypothesis.html
