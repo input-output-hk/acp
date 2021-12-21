@@ -41,7 +41,7 @@ stdenv.mkDerivation rec {
            --defaults=config/pandoc/common.yaml \
            --defaults=config/pandoc/html.yaml \
            --output=output/index.html \
-           index.md
+           README.md
   '';
 
   installPhase = ''
