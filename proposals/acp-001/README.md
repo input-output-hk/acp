@@ -104,11 +104,11 @@ RFCs should be loosely based on the following structure:
 Items in the structure above that are not applicable can be excluded.
 Graphics, drawings, links, references, and whatever else helps convey your design may be included.
 
-Proposals that supercede a previous proposal should include all relevant parts of the old proposal, so that readers don't have to "walk the tree" to determing the current state of things.
+Proposals that supercede a previous proposal should include all relevant parts of the old proposal, so that readers don't have to "walk the tree" to determine the current state of things.
 
 ### Submitting a proposal
 
-To submit a proposal, clone the [repository](https://github.com/input-output-hk/acp), create a branch for your proposal, and then write your proposal in a new file under the proposals directory.
+To submit a proposal, clone the [repository](https://github.com/input-output-hk/acp), create a branch for your proposal, and then write your proposal in a new file in the appropriate place.
 
 Submit a pull request to the repository from your branch to the master branch.
 
@@ -116,7 +116,7 @@ An automated bot will build a pretty website page from your proposal and provide
 
 Assign yourself to the PR and assign every team member as a reviewer. This includes developers, managers, project managers, scrum master, and any other interested party.
 
-Formatting options available to you can be found [here](./01.md).
+Detailed instructions exist in the README of the [repository](https://github.com/input-output-hk/acp).
 
 ### Discussing a proposal
 
@@ -204,7 +204,7 @@ This is a very low-friction communication choice, allowing everyone to contribut
 
 ### Email
 
-Email is "lowest common denominator" for communication in the company. Everyone uses email, and as such it is a good place for discussion with those outside the company. However, email lacks:
+Email is the "lowest common denominator" for communication in the company. Everyone uses email, and as such it is a good place for discussion with those outside the company. However, email lacks:
 
   - Good persistence: Emails are easily lost amongst the many other emails we each receive.
   - Readability: Long email chains are difficult to read, especially involving multiple people.
@@ -217,15 +217,6 @@ However, they should not be our primary way of communication.
 Meetings require time synchronization (or co-location), are generally a bad format for fair discussion (as mentioned previously), and have no fair, explicit way of reaching consensus.
 Additionally, discussions aren't recorded for future reference.
 
-*Next Proposal*
+## Credit
 
-- Scheduled and implemented statuses
-- Proposal Shepherd
-
-The key issues with existing places to document our processes are:
-  - fragmentation
-  - lack of faith
-
-- document our processes
-- suggest new processes and design decisions
-- collaborate on processess and design decisions in an asynchronous and fair manner.
+Much of the structure of this document was derived from Oskar Wickström's [RFC template](https://wickstrom.tech/assets/meta.rfc.pdf) and [associated post](https://wickstrom.tech/general/2020/03/13/my-experience-in-working-remotely.html).

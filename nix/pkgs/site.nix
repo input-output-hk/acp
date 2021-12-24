@@ -27,13 +27,13 @@ stdenv.mkDerivation rec {
     cp -r assets output/assets
 
     echo >&2 "Exporting HTML manuscript"
-    find proposals/ -maxdepth 1 -type f -exec sh \
-      -c 'pandoc --verbose \
+    find proposals/ -type f -exec sh \
+      -c 'mkdir -p output/$(dirname $1)/ && pandoc --verbose \
            --data-dir="$PANDOC_DATA_DIR" \
            --defaults=config/pandoc/common.yaml \
            --defaults=config/pandoc/html.yaml \
            --defaults=config/pandoc/html-proposal.yaml \
-           --output=output/proposals/$(basename $1 .md).html \
+           --output=output/$(dirname $1)/$(basename $1 .md).html \
            $1' \
       sh {} \;
     pandoc --verbose \
@@ -42,6 +42,11 @@ stdenv.mkDerivation rec {
            --defaults=config/pandoc/html.yaml \
            --output=output/index.html \
            README.md
+
+    # Convert README.html to index.html (map GitHub behaviour to HTML).
+    find output -type f -wholename "*README.html" -exec sh \
+      -c 'mv $1 $(dirname $1)/index.html' \
+      sh {} \;
   '';
 
   installPhase = ''
