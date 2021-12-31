@@ -30,5 +30,5 @@ ls output
 
 ### Credit
 
-pandoc configuration from: https://github.com/manubot/try-manubot
-manubot: https://github.com/manubot/manubot
+- pandoc configuration from: https://github.com/manubot/try-manubot (modified)
+- manubot: https://github.com/manubot/manubot
