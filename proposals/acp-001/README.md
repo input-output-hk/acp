@@ -43,11 +43,11 @@ They are also not a good place for fair discussion, with social dynamics dictati
 
 ### Problem statement
 
-The Adrestia team lacks a single, trusted point-of-reference for their processes and decisions, and has no defined process for proposing new ideas and creating change.
+The Adrestia team lacks a trusted point-of-reference for their processes and decisions, and has no defined process for proposing new ideas and creating change.
 Existing ways of discussing and debating change are unfair, and the results of those discussions are not recorded anywhere.
 
 The goal is to provide a way for team members to propose and discuss change in an asynchronous and fair manner, and persist the results of those discussions.
-The process should be low-friction and trustworthy, inspiring team members to initiate the change they want to see, improving the effectiveness of the team.
+The process should be low-friction and trustworthy, inspiring team members to initiate and sustain the change they want to see, improving the effectiveness of the team in the long run.
 
 ## Proposed solution
 
@@ -126,7 +126,7 @@ For a proposal to be accepted, every team member must accept it.
 This includes developers, managers, and project managers.
 A proposal cannot move into the accepted state by any other means.
 
-This means each reviewer has the power to veto any decision, please use that power responsibly.
+This means each reviewer has the power to veto any decision - please use that power responsibly.
 Practice empathy, see and understand the issue the proposer is trying to address, and move towards a shared understanding.
 Explain your reasoning clearly, use logic, avoid emotional arguments, and make every effort to understand and sufficiently answer questions asked of you.
 Do not use unqualified assertions designed to shut down discussion ("X is better!").
@@ -135,7 +135,7 @@ Sharing Excel spreadsheets over email might be the best solution in some context
 
 Act in good faith.
 
-Your approval indicates that you have read the proposal, understood it's impact on you, and accepted any additional reponsibilites it burdens you with.
+Your approval indicates that you have read the proposal, understood it's impact on you, and accepted any additional responsibilites it burdens you with.
 
 ### Impact
 
@@ -215,7 +215,7 @@ Email is the "lowest common denominator" for communication in the company. Every
 Meetings are certainly useful in some contexts, especially for complex discussions.
 However, they should not be our primary way of communication.
 Meetings require time synchronization (or co-location), are generally a bad format for fair discussion (as mentioned previously), and have no fair, explicit way of reaching consensus.
-Additionally, discussions aren't recorded for future reference.
+Additionally, discussions aren't recorded for future reference, or if they are, not in a format suitable for quick reference.
 
 ## Credit
 
