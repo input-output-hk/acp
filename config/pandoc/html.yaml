@@ -15,7 +15,7 @@ include-after-body:
 - config/plugins/tooltips.html
 - config/plugins/analytics.html
 - config/plugins/mathjax.html
-- config/plugins/acp-header.html
+- config/plugins/canonical-link.html
 filters:
 - config/pandoc/filters/links.lua
 variables:
