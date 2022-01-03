@@ -1,17 +1,6 @@
 # Adrestia Change Proposals (ACPs)
 
 Adrestia Change Proposals (ACPs) describe standards, processes, or decisions the Adrestia team have made, or wish to discuss.
-The current process is described in detail in [ACP1 - "ACP Process"](./proposals/acp-001/README.md).
-
-## Current ACPs
-
-| # | Title | Status |
-| --- | --- | --- |
-| 1 | [ACP process](./proposals/acp-001/README.md) | Proposed |
-
-## Submitting an ACP
-
-Formatting options available to you can be found [here](./proposals/acp-001/formatting.md).
 
 ## Hacking instructions
 

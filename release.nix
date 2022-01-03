@@ -3,8 +3,6 @@
 }:
 
 let
-  jobs = {
-    acp-site = (import ./default.nix { inherit system pkgs; }).acp-site;
-  };
+  jobs = {};
 in
   jobs
