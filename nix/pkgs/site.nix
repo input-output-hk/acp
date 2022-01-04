@@ -68,6 +68,9 @@ stdenv.mkDerivation rec {
   installPhase = ''
     mkdir -p $out/share/doc/acp
     cp -r output/* $out/share/doc/acp/
+
+    mkdir -p $out/nix-support/
+    echo "doc site $out/share/doc/acp" >> $out/nix-support/hydra-build-products
   '';
 
   meta = with lib; {
