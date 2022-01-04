@@ -30,7 +30,7 @@ stdenv.mkDerivation rec {
   ];
 
   buildPhase = ''
-    PANDOC_DATA_DIR="$src"
+    PANDOC_DATA_DIR="$src/config/pandoc"
 
     mkdir -p output/proposals
 
@@ -38,20 +38,24 @@ stdenv.mkDerivation rec {
     echo >&2 "Exporting assets"
     cp -r assets output/assets
 
-    echo >&2 "Exporting HTML manuscript"
+    echo >&2 "Exporting HTML"
+    # Convert proposals
     find proposals/ -type f -exec sh \
       -c 'mkdir -p output/$(dirname $1)/ && pandoc --verbose \
            --data-dir="$PANDOC_DATA_DIR" \
-           --defaults=config/pandoc/common.yaml \
-           --defaults=config/pandoc/html.yaml \
-           --defaults=config/pandoc/html-proposal.yaml \
+           --resource-path="$PANDOC_DATA_DIR" \
+           --defaults=config/pandoc/defaults/common.yaml \
+           --defaults=config/pandoc/defaults/html.yaml \
+           --defaults=config/pandoc/defaults/html-proposal.yaml \
            --output=output/$(dirname $1)/$(basename $1 .md).html \
            $1' \
       sh {} \;
+    # Convert landing page
     pandoc --verbose \
            --data-dir="$PANDOC_DATA_DIR" \
-           --defaults=config/pandoc/common.yaml \
-           --defaults=config/pandoc/html.yaml \
+           --resource-path="$PANDOC_DATA_DIR" \
+           --defaults=config/pandoc/defaults/common.yaml \
+           --defaults=config/pandoc/defaults/html.yaml \
            --output=output/index.html \
            README.md
 
