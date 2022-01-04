@@ -1,10 +1,22 @@
 { lib, stdenv, pandoc, pandoc-xnos, pandoc-fignos, pandoc-eqnos, pandoc-tablenos, manubot }:
 
+let
+  filter = name: type: let
+    baseName = baseNameOf (toString name);
+    sansPrefix = lib.removePrefix (toString ../.) name;
+  in !(
+    baseName == "output"
+  );
+in
 stdenv.mkDerivation rec {
   pname = "acp-html";
   version = "0.0.1";
 
-  src = fetchGit ../..;
+  src = lib.cleanSourceWith {
+    name = pname;
+    inherit filter;
+    src = lib.cleanSource ../..;
+  };
 
   phases = [ "unpackPhase" "buildPhase" "installPhase" ];
 
