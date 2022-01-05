@@ -1,0 +1,45 @@
+name: Deploy master
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy-gh-pages-master:
+    runs-on: ubuntu-latest
+    name: Download acp-site bundle
+    steps:
+      - name: '📥 Checkout Code'
+        uses: actions/checkout@v2.3.4
+      - name: '❄ Install Nix'
+        uses: cachix/install-nix-action@v14.1
+        with:
+          nix_path: nixpkgs=channel:nixos-21.05
+          extra_nix_config: |
+            trusted-public-keys = hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
+            substituters = https://hydra.iohk.io https://cache.nixos.org/
+      - name: '🧱 Build'
+        id: build
+        run: 'nix-build release.nix -A acp-site-tarball -o acp-site-tarball'
+      - name: '📤 Publish ACP site'
+        run: |
+          echo "Checking out gh-pages branch..."
+          git config --local user.email "samuel.evans-powell@iohk.io"
+          git config --local user.name ${{ github.actor }}
+          git fetch origin gh-pages:gh-pages
+          git checkout gh-pages
+
+          echo "Extracting site tarball for master..."
+          mkdir -p master-tmp
+          tar -xzvf acp-site-tarball/acp-site.tar.gz --directory master-tmp
+          rm -rf master
+          mv master-tmp master
+          rm acp-site-tarball
+
+          ln -s master/index.html index.html
+
+          echo "Committing changes..."
+          git add -A
+          git commit -m "Deployed master" || true
+          git push https://${{ github.actor }}:${{ github.token }}@github.com/${{ github.repository }}.git HEAD:gh-pages
