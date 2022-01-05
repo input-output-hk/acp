@@ -34,7 +34,7 @@ $for(header-includes)$
 $endfor$
 </head>
 <body>
-<header id="page_header"><a href="/index.html" class="brand"><img id="logo" src="/assets/images/logo.svg"><h1>Adrestia Change Proposals</h1></a></header>
+<header id="page_header"><a href="$url-prefix$/index.html" class="brand"><img id="logo" src="$url-prefix$/assets/images/logo.svg"><h1>Adrestia Change Proposals</h1></a></header>
 <div class="content">
 $for(include-before)$
 $include-before$

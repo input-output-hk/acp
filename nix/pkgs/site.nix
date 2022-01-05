@@ -1,4 +1,4 @@
-{ lib, stdenv, pandoc, pandoc-xnos, pandoc-fignos, pandoc-eqnos, pandoc-tablenos, manubot }:
+{ lib, stdenv, pandoc, pandoc-xnos, pandoc-fignos, pandoc-eqnos, pandoc-tablenos, manubot, urlPrefix ? "" }:
 
 let
   filter = name: type: let
@@ -48,6 +48,7 @@ stdenv.mkDerivation rec {
            --defaults=config/pandoc/defaults/html.yaml \
            --defaults=config/pandoc/defaults/html-proposal.yaml \
            --output=output/$(dirname $1)/$(basename $1 .md).html \
+           --variable url-prefix:${urlPrefix} \
            $1' \
       sh {} \;
     # Convert landing page
@@ -57,6 +58,7 @@ stdenv.mkDerivation rec {
            --defaults=config/pandoc/defaults/common.yaml \
            --defaults=config/pandoc/defaults/html.yaml \
            --output=output/index.html \
+           --variable url-prefix:${urlPrefix} \
            README.md
 
     # Convert README.html to index.html (map GitHub behaviour to HTML).
