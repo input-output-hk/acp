@@ -24,7 +24,11 @@ let
 
   jobs = {
     acp-site = (import ./default.nix { inherit system pkgs; }).acp-site;
-  } // releaseLib.mkRequiredJob [ jobs.acp-site ];
+    acp-site-tarball = (import ./default.nix { inherit system pkgs; }).acp-site-tarball;
+  } // releaseLib.mkRequiredJob [
+    jobs.acp-site
+    jobs.acp-site-tarball
+  ];
   # ^ It is required to make a required job for Hydra to function as needed, see
   # this comment from iohk-nix:
   # > ... it forces Hydra to re-evaluate every commit. The side-effect of that
