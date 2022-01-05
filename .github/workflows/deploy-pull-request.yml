@@ -51,9 +51,9 @@ jobs:
         uses: actions/github-script@v5
         with:
           script: |
-            var msg = `🚢 Your pull request will be deployed at https://${context.repo.owner}.github.io/${context.repo.repo}/pull-requests/${context.issue.number}/index.html soon.
+            var msg = `🚢 Your pull request will be deployed [here](https://${context.repo.owner}.github.io/${context.repo.repo}/pull-requests/${context.issue.number}/index.html) soon.
 
-            Check the status of the deploy here: https://github.com/${context.repo.owner}/${context.repo.repo}/deployments/activity_log?environment=github-pages`
+            Check the status of the deploy [here](https://github.com/${context.repo.owner}/${context.repo.repo}/deployments/activity_log?environment=github-pages).`
 
             github.rest.issues.createComment({
               issue_number: context.issue.number,
