@@ -1,0 +1,52 @@
+name: serve
+
+on:
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    name: Download acp-site bundle
+    steps:
+      - name: Wait for Hydra build
+        uses: rvl/hydra-build-products-action@master
+        id: hydra
+        with:
+          hydra: 'https://hydra.iohk.io'
+          jobs: 'acp-site-tarball'
+
+      - uses: actions/checkout@v1
+      - name: Deploy to gh-pages 🚀
+        run: |
+          echo "Checking out gh-pages branch..."
+          git config --local user.email "samuel.evans-powell@iohk.io"
+          git config --local user.name ${{ github.actor }}
+          git fetch origin gh-pages:gh-pages
+          git checkout gh-pages
+
+          echo "Obtaining site bundle from ${{ steps.hydra.outputs.buildProducts }}..."
+          wget "${{ steps.hydra.outputs.buildProducts }}" -O site.tar.gz
+
+          export PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')
+          echo "Extracting site bundle for PR #${PR_NUMBER}..."
+          mkdir -p "pull-requests/${PR_NUMBER}"
+          tar -xzvf site.tar.gz --directory "pull-requests/${PR_NUMBER}"
+          rm site.tar.gz
+          git add -A
+          git commit -m "Deployed PR#${PR_NUMBER}" || true
+          git push https://${{ github.actor }}:${{ github.token }}@github.com/${{ github.repository }}.git HEAD:gh-pages
+      - name: Notify contributors
+        uses: actions/github-script@v5
+        with:
+          script: |
+            var msg = `🚢 Your pull request will be deployed at https://${context.repo.owner}.github.io/${context.repo.repo}/pull-requests/${context.issue.number}/index.html soon.
+
+            Check the status of the deploy here: https://github.com/${context.repo.owner}/${context.repo.repo}/deployments/activity_log?environment=github-pages`
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: msg
+            })
