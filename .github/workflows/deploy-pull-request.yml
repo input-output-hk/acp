@@ -1,23 +1,30 @@
-name: serve
+name: Deploy pull-request
 
 on:
   pull_request:
     branches: [ "master" ]
 
 jobs:
-  setup:
+  deploy-gh-pages-pr:
     runs-on: ubuntu-latest
     name: Download acp-site bundle
     steps:
-      - name: Wait for Hydra build
-        uses: rvl/hydra-build-products-action@master
-        id: hydra
+      - name: '📥 Checkout Code'
+        uses: actions/checkout@v2.3.4
+      - name: '❄ Install Nix'
+        uses: cachix/install-nix-action@v14.1
         with:
-          hydra: 'https://hydra.iohk.io'
-          jobs: 'acp-site-tarball'
+          nix_path: nixpkgs=channel:nixos-21.05
+          extra_nix_config: |
+            trusted-public-keys = hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
+            substituters = https://hydra.iohk.io https://cache.nixos.org/
+      - name: '🧱 Build'
+        id: build
+        run: |
+          export PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')
 
-      - uses: actions/checkout@v1
-      - name: Deploy to gh-pages 🚀
+          nix-build release.nix -A acp-site-tarball -o acp-site-tarball --argstr pr "${PR_NUMBER}"
+      - name: '📤 Publish ACP site'
         run: |
           echo "Checking out gh-pages branch..."
           git config --local user.email "samuel.evans-powell@iohk.io"
@@ -25,18 +32,22 @@ jobs:
           git fetch origin gh-pages:gh-pages
           git checkout gh-pages
 
-          echo "Obtaining site bundle from ${{ steps.hydra.outputs.buildProducts }}..."
-          wget "${{ steps.hydra.outputs.buildProducts }}" -O site.tar.gz
-
           export PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')
-          echo "Extracting site bundle for PR #${PR_NUMBER}..."
-          mkdir -p "pull-requests/${PR_NUMBER}"
-          tar -xzvf site.tar.gz --directory "pull-requests/${PR_NUMBER}"
-          rm site.tar.gz
+          export FOLDER_NAME="pull-requests/${PR_NUMBER}"
+          export TMP_FOLDER_NAME="pull-requests/${PR_NUMBER}-tmp"
+
+          echo "Extracting site tarball for PR #${PR_NUMBER}..."
+          mkdir -p "${TMP_FOLDER_NAME}"
+          tar -xzvf acp-site-tarball/acp-site.tar.gz --directory "${TMP_FOLDER_NAME}"
+          rm -rf "${FOLDER_NAME}"
+          mv "${TMP_FOLDER_NAME}" "${FOLDER_NAME}
+          rm acp-site-tarball
+
+          echo "Committing changes..."
           git add -A
           git commit -m "Deployed PR#${PR_NUMBER}" || true
           git push https://${{ github.actor }}:${{ github.token }}@github.com/${{ github.repository }}.git HEAD:gh-pages
-      - name: Notify contributors
+      - name: '📢 Notify contributors'
         uses: actions/github-script@v5
         with:
           script: |
