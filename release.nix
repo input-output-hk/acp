@@ -11,8 +11,8 @@
 , projectArgs ? { config = { allowUnfree = false; inHydra = true; }; }
   # Project source git revision, for "mkRequiredJob"
 , gitrev ? null
-  # Pull request number provided by Hydra
-, pr ? null
+  # Prefix for absolute URLs in content
+, urlPrefix ? ""
 }:
 
 let
@@ -23,14 +23,6 @@ let
     packageSet = import acp;
     gitrev = acp.rev;
   };
-
-  # Use this to fix absolute URLs on GitHub pages ($url-prefix$ in pandoc
-  # templates).
-  urlPrefix = "/acp" + (
-    if (pr != null)
-    then "/pull-requests/${pr}"
-    else "/master"
-  );
 
   jobs = {
     acp-site = (import ./default.nix { inherit system pkgs urlPrefix; }).acp-site;

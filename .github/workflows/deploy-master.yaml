@@ -21,7 +21,7 @@ jobs:
             substituters = https://hydra.iohk.io https://cache.nixos.org/
       - name: '🧱 Build'
         id: build
-        run: 'nix-build release.nix -A acp-site-tarball -o acp-site-tarball'
+        run: 'nix-build release.nix -A acp-site-tarball -o acp-site-tarball --argstr urlPrefix "/acp/master"'
       - name: '📤 Publish ACP site'
         run: |
           echo "Checking out gh-pages branch..."

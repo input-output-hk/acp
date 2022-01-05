@@ -23,7 +23,7 @@ jobs:
         run: |
           export PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')
 
-          nix-build release.nix -A acp-site-tarball -o acp-site-tarball --argstr pr "${PR_NUMBER}"
+          nix-build release.nix -A acp-site-tarball -o acp-site-tarball --argstr urlPrefix "/acp/pull-requests/${PR_NUMBER}"
       - name: '📤 Publish ACP site'
         run: |
           echo "Checking out gh-pages branch..."
