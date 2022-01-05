@@ -1,4 +1,16 @@
 {
+    "iohk-nix": {
+        "branch": "master",
+        "description": "nix scripts shared across projects",
+        "homepage": null,
+        "owner": "input-output-hk",
+        "repo": "iohk-nix",
+        "rev": "57f8cc93630754eb6f576b587fd0697969a29c75",
+        "sha256": "1lkb593i52x3ba5ifv6h79vv0wyd4b4a6zcpzag3ngilf0rj0n80",
+        "type": "tarball",
+        "url": "https://github.com/input-output-hk/iohk-nix/archive/57f8cc93630754eb6f576b587fd0697969a29c75.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "niv": {
         "branch": "master",
         "description": "Easy dependency management for Nix projects",

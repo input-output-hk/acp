@@ -5,6 +5,8 @@
 let
   sources = import ./sources.nix { inherit pkgs; };
 
+  iohkNix = import sources.iohk-nix {};
+
   nixpkgs = sources.nixpkgs;
 
   overlays = [
@@ -23,7 +25,7 @@ let
         in
           super.python38.override { inherit packageOverrides; };
     })
-  ];
+  ] ++ iohkNix.overlays.iohkNix;
 
   pkgs = import nixpkgs {
     inherit system overlays config;

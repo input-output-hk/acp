@@ -1,5 +1,6 @@
 { system ? builtins.currentSystem
 , pkgs ? import ./nix { inherit system; }
+, config ? {}
 }:
 
 {
