@@ -2,3 +2,4 @@
 # Load on top of common defaults and html defaults.
 include-after-body:
 - config/pandoc/plugins/hypothesis.html
+- config/pandoc/plugins/canonical-link.html

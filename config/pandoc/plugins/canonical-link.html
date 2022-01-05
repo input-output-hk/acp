@@ -5,14 +5,14 @@
 -->
 
 <script type="module">
-  const canonicalBaseUrl = "https://input-output-hk.github.io/acp";
+  const canonicalBaseUrl = "https://input-output-hk.github.io/acp/";
 
   // start script
   function start() {
-      const location = window.location;
-      const pathName = new URL(location).pathname;
+      const location = window.location.href;
+      const canonicalPath = "proposals" + location.split("proposals").pop();
 
-      const canonicalUrl = canonicalBaseUrl + pathName
+      const canonicalUrl = canonicalBaseUrl + canonicalPath;
 
       const link = document.createElement("link");
       link.rel = "canonical";

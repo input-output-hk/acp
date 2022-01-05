@@ -15,7 +15,6 @@ include-after-body:
 - config/pandoc/plugins/tooltips.html
 - config/pandoc/plugins/analytics.html
 - config/pandoc/plugins/mathjax.html
-- config/pandoc/plugins/canonical-link.html
 filters:
 - config/pandoc/filters/links.lua
 variables:
