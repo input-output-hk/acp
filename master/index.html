@@ -3110,32 +3110,6 @@ ls output</code></pre>
     margin-right: 60px !important;
   }
 </style>
-<!--
-  Canonical link plugin
-
-  Provides a canonical link for each ACP, for the purposes of Hypothesis.js.
--->
-
-<script type="module">
-  const canonicalBaseUrl = "https://input-output-hk.github.io/acp";
-
-  // start script
-  function start() {
-      const location = window.location;
-      const pathName = new URL(location).pathname;
-
-      const canonicalUrl = canonicalBaseUrl + pathName
-
-      const link = document.createElement("link");
-      link.rel = "canonical";
-      link.href = canonicalUrl;
-
-      document.head.append(link);
-  }
-
-  // start script when document is finished loading
-  window.addEventListener("load", start);
-</script>
 </div>
 </body>
 </html>
