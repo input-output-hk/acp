@@ -1,4 +1,4 @@
-name: Deploy pull-request
+name: Deploy GitHub Pages - pull request
 
 on:
   pull_request:
@@ -40,7 +40,7 @@ jobs:
           mkdir -p "${TMP_FOLDER_NAME}"
           tar -xzvf acp-site-tarball/acp-site.tar.gz --directory "${TMP_FOLDER_NAME}"
           rm -rf "${FOLDER_NAME}"
-          mv "${TMP_FOLDER_NAME}" "${FOLDER_NAME}
+          mv "${TMP_FOLDER_NAME}" "${FOLDER_NAME}"
           rm acp-site-tarball
 
           echo "Committing changes..."
