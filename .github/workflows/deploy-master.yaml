@@ -1,4 +1,4 @@
-name: Deploy master
+name: Deploy GitHub Pages - master
 
 on:
   push:
@@ -37,7 +37,7 @@ jobs:
           mv master-tmp master
           rm acp-site-tarball
 
-          ln -s master/index.html index.html
+          ln -sf master/index.html index.html
 
           echo "Committing changes..."
           git add -A
