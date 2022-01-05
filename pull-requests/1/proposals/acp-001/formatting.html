@@ -288,7 +288,7 @@ White background specified to serve as a backdrop for transparent sections of th
 </tbody>
 </table>
 </div>
-<div id="tbl:151e72fa-4649-428f-a425-0a9afd0075da" class="tablenos">
+<div id="tbl:3b07e959-6251-4e91-a776-ded0efd8ef2f" class="tablenos">
 <table id="tbl:">
 <caption><span>Table 3:</span> A table with merged cells using the <code>attributes</code> plugin.
 </caption>
@@ -3445,32 +3445,6 @@ useful for <em>warnings</em> - <a href="https://manubot.org/">manubot.org</a></s
     margin-right: 60px !important;
   }
 </style>
-<!--
-  Canonical link plugin
-
-  Provides a canonical link for each ACP, for the purposes of Hypothesis.js.
--->
-
-<script type="module">
-  const canonicalBaseUrl = "https://input-output-hk.github.io/acp";
-
-  // start script
-  function start() {
-      const location = window.location;
-      const pathName = new URL(location).pathname;
-
-      const canonicalUrl = canonicalBaseUrl + pathName
-
-      const link = document.createElement("link");
-      link.rel = "canonical";
-      link.href = canonicalUrl;
-
-      document.head.append(link);
-  }
-
-  // start script when document is finished loading
-  window.addEventListener("load", start);
-</script>
 <!-- 
   Annotations Plugin
 
@@ -3637,6 +3611,32 @@ useful for <em>warnings</em> - <a href="https://manubot.org/">manubot.org</a></s
     }
   }
 </style>
+<!--
+  Canonical link plugin
+
+  Provides a canonical link for each ACP, for the purposes of Hypothesis.js.
+-->
+
+<script type="module">
+  const canonicalBaseUrl = "https://input-output-hk.github.io/acp/";
+
+  // start script
+  function start() {
+      const location = window.location.href;
+      const canonicalPath = "proposals" + location.split("proposals").pop();
+
+      const canonicalUrl = canonicalBaseUrl + canonicalPath;
+
+      const link = document.createElement("link");
+      link.rel = "canonical";
+      link.href = canonicalUrl;
+
+      document.head.append(link);
+  }
+
+  // start script when document is finished loading
+  window.addEventListener("load", start);
+</script>
 </div>
 </body>
 </html>
