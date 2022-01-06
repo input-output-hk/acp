@@ -33,10 +33,11 @@ stdenv.mkDerivation rec {
     PANDOC_DATA_DIR="$src/config/pandoc"
 
     mkdir -p output/proposals
+    mkdir -p output/assets
 
     echo >&2 "PANDOC_DATA_DIR: $PANDOC_DATA_DIR"
     echo >&2 "Exporting assets"
-    cp -r assets output/assets
+    cp -r assets/* output/assets/
 
     echo >&2 "Exporting HTML"
     # Convert proposals
