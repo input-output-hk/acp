@@ -8,6 +8,7 @@ The current process is described in detail in [ACP1 - "ACP Process"](./proposals
 | # | Title | Status |
 | --- | --- | --- |
 | 1 | [ACP process](./proposals/acp-001/README.md) | Proposed |
+| 2 | [Requests for Work](./proposals/acp-002/README.md) | Proposed |
 
 ## Submitting an ACP
 
